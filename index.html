@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-WebApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="py-6 px-4 sm:px-8 border-b border-slate-800">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary pulse-glow"></div>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">To-Do-Task</h1>
+            </div>
+            <div class="flex items-center space-x-6">
+                <button class="text-slate-300 hover:text-primary transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </button>
+                <button class="text-slate-300 hover:text-secondary transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 sm:px-8 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Task Input -->
+            <div class="card rounded-xl p-6 mb-8">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input 
+                        type="text" 
+                        placeholder="Add a new task..." 
+                        class="flex-grow bg-darker border border-slate-800 rounded-lg px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    >
+                    <button class="btn-gradient px-6 py-3 rounded-lg font-medium">Add Task</button>
+                </div>
+                <div class="flex flex-wrap gap-4 mt-4">
+                    <div class="relative flex-grow">
+                        <input 
+                            type="date" 
+                            class="w-full bg-darker border border-slate-800 rounded-lg px-4 py-2 pr-8 text-slate-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute right-3 top-2.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div class="relative flex-grow">
+                        <select class="w-full bg-darker border border-slate-800 rounded-lg px-4 py-2 pr-8 text-slate-300 appearance-none focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+                            <option value="">Select category</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute right-3 top-2.5 text-slate-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex overflow-x-auto pb-2 mb-6">
+                <div class="flex space-x-4">
+                    <button class="category-tab active px-4 py-2 text-slate-300 font-medium whitespace-nowrap">All Tasks</button>
+                    <button class="category-tab px-4 py-2 text-slate-300 font-medium whitespace-nowrap">Work</button>
+                    <button class="category-tab px-4 py-2 text-slate-300 font-medium whitespace-nowrap">Personal</button>
+                    <button class="category-tab px-4 py-2 text-slate-300 font-medium whitespace-nowrap">Shopping</button>
+                    <button class="category-tab px-4 py-2 text-slate-300 font-medium whitespace-nowrap">Completed</button>
+                </div>
+            </div>
+
+            <!-- Tasks List -->
+            <div class="space-y-4">
+                <!-- Task Item -->
+                <div class="card rounded-xl p-4 task-item">
+                    <div class="flex items-center">
+                        <div class="checkbox-glow mr-4">
+                            <input type="checkbox" class="rounded">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="task-title font-medium text-slate-100">Complete UI design for TickIt</h3>
+                            <div class="flex items-center mt-1 text-sm text-slate-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span>Tomorrow</span>
+                                <span class="mx-2">•</span>
+                                <span class="bg-slate-800 text-primary px-2 py-0.5 rounded text-xs">Work</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 ml-4">
+                            <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-800 text-slate-300 hover:text-primary hover:bg-slate-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </button>
+                            <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-800 text-slate-300 hover:text-red-500 hover:bg-slate-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Item -->
+                <div class="card rounded-xl p-4 task-item">
+                    <div class="flex items-center">
+                        <div class="checkbox-glow mr-4">
+                            <input type="checkbox" class="rounded">
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="task-title font-medium text-slate-100">Buy groceries for the week</h3>
+                            <div class="flex items-center mt-1 text-sm text-slate-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span>Today</span>
+                                <span class="mx-2">•</span>
+                                <span class="bg-slate-800 text-secondary px-2 py-0.5 rounded text-xs">Shopping</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 ml-4">
+                            <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-800 text-slate-300 hover:text-primary hover:bg-slate-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </button>
+                            <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-800 text-slate-300 hover:text-red-500 hover:bg-slate-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Item - Completed -->
+                <div class="card rounded-xl p-4 task-item completed">
+                    <div class="flex items-center">
+                        <div class="checkbox-glow mr-4">
+                            <input type="checkbox" class="rounded" checked>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="task-title font-medium text-slate-100">Setup GitHub repository</h3>
+                            <div class="flex items-center mt-1 text-sm text-slate-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span>Yesterday</span>
+                                <span class="mx-2">•</span>
+                                <span class="bg-slate-800 text-slate-500 px-2 py-0.5 rounded text-xs">Completed</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 ml-4">
+                            <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-800 text-slate-300 hover:text-primary hover:bg-slate-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </button>
+                            <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-800 text-slate-300 hover:text-red-500 hover:bg-slate-700 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="card rounded-xl p-8 text-center" id="empty-state" style="display: none;">
+                    <div class="max-w-sm mx-auto text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        <h3 class="text-lg font-medium mb-2">No tasks here yet</h3>
+                        <p class="text-sm">Add your first task by using the input above.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
